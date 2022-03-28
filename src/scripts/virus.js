@@ -1,4 +1,4 @@
-export default class Vaccine {
+export default class Virus {
     constructor(x, y, radius, color, velocity) {
         this.x = x;
         this.y = y;
@@ -21,4 +21,3 @@ export default class Vaccine {
         this.y = this.y + this.velocity.y;
     }
 }
-
