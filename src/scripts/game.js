@@ -3,10 +3,7 @@ import Vaccine from './vaccine';
 import Virus from './virus';
 import Explosion from './explosion';
 import { drawBackground } from './background';
-import artery from "../images/artery.jpg";
 
-// const vaccine = new Vaccine(400, 300, 5, 'red', { x: 1, y: 1 });
-// const vaccine2 = new Vaccine(400, 300, 5, 'green', { x: -1, y: -1 });
 const player = new Player(400, 300, 30, 'blue');
 const vaccines = [];
 const viruses = [];
@@ -16,42 +13,15 @@ let score = 0;
 export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');;
-        // this.drawPlayer();
         this.shoot();
         this.animate();
         this.spawnViruses();
-        // this.animate = this.animate.bind(this);
-        // this.player = new Player(100, 100, 30, 'blue');
-        // this.player.draw(this.ctx);
     }
-
-    // drawPlayer() {
-
-    //     player.draw(this.ctx);
-    // }
-
-    // drawBackground() {
-    //     let backgroundImage = new Image();
-    //     backgroundImage.onload = () => {
-    //         this.ctx.save();
-    //         this.ctx.globalAlpha = 0.5; 
-    //         this.ctx.drawImage(backgroundImage, 0, 0, 800, 600);
-    //         this.ctx.restore();
-    //     };
-    //     backgroundImage.src = artery;
-    // }
 
     animate() {
         let animationId;
         animationId = requestAnimationFrame(() => this.animate());
-        // this.ctx.globalAlpha = 1.0;
         drawBackground(this.ctx);
-        // this.score();
-        // this.ctx.fillStyle = 'rgb(0, 0, 0)';
-        // let backgroundImage = new Image();
-        // backgroundImage.src = artery;
-        // this.ctx.drawImage(backgroundImage, 0, 0, 800, 600);
-        // this.ctx.fillRect(0, 0, 800, 600);
         player.draw(this.ctx);
         this.score();
         explosions.forEach((explosion, index) => {
