@@ -2,6 +2,8 @@ import Player from './player';
 import Vaccine from './vaccine';
 import Virus from './virus';
 import Explosion from './explosion';
+import { drawBackground } from './background';
+import artery from "../images/artery.jpg";
 
 // const vaccine = new Vaccine(400, 300, 5, 'red', { x: 1, y: 1 });
 // const vaccine2 = new Vaccine(400, 300, 5, 'green', { x: -1, y: -1 });
@@ -9,6 +11,7 @@ const player = new Player(400, 300, 30, 'blue');
 const vaccines = [];
 const viruses = [];
 const explosions = [];
+let score = 0;
 
 export default class Game {
     constructor(canvas) {
@@ -27,12 +30,30 @@ export default class Game {
     //     player.draw(this.ctx);
     // }
 
+    // drawBackground() {
+    //     let backgroundImage = new Image();
+    //     backgroundImage.onload = () => {
+    //         this.ctx.save();
+    //         this.ctx.globalAlpha = 0.5; 
+    //         this.ctx.drawImage(backgroundImage, 0, 0, 800, 600);
+    //         this.ctx.restore();
+    //     };
+    //     backgroundImage.src = artery;
+    // }
+
     animate() {
         let animationId;
         animationId = requestAnimationFrame(() => this.animate());
-        this.ctx.fillStyle = 'rgb(0, 0, 0, 0.1)';
-        this.ctx.fillRect(0, 0, 800, 600);
+        // this.ctx.globalAlpha = 1.0;
+        drawBackground(this.ctx);
+        // this.score();
+        // this.ctx.fillStyle = 'rgb(0, 0, 0)';
+        // let backgroundImage = new Image();
+        // backgroundImage.src = artery;
+        // this.ctx.drawImage(backgroundImage, 0, 0, 800, 600);
+        // this.ctx.fillRect(0, 0, 800, 600);
         player.draw(this.ctx);
+        this.score();
         explosions.forEach((explosion, index) => {
             if (explosion.alpha <= 0) {
                 explosions.splice(index, 1);
@@ -62,9 +83,10 @@ export default class Game {
                 const dist = Math.hypot(vaccine.x - virus.x, vaccine.y - virus.y);
                 // console.log(dist);
                 if (dist - virus.radius - vaccine.radius < 1) {
+                    score += 10;
                     for (let i = 0; i < virus.radius * 2; i++) {
-                        explosions.push(new Explosion(vaccine.x, vaccine.y, Math.random() * 2, virus.color, { x: (Math.random() - 0.5) * (Math.random() * 5), y: Math.random() - 0.5 * (Math.random() * 5)
-}));
+                        explosions.push(new Explosion(vaccine.x, vaccine.y, Math.random() * 2, virus.color,
+                            { x: (Math.random() - 0.5) * (Math.random() * 8), y: (Math.random() - 0.5) * (Math.random() * 8) }));
                     }
                     if (virus.radius - 10 > 10) {
                         virus.radius -= 10;
@@ -80,9 +102,6 @@ export default class Game {
                 }
             });
         });
-        // vaccine.draw(this.ctx);
-        // vaccine.update();
-        // console.log('go');
     }
 
     spawnViruses() {
@@ -111,13 +130,19 @@ export default class Game {
 
     shoot() {
         canvas.addEventListener('click', (event) => {
-            console.log(vaccines);
+            // console.log(vaccines);
             const bounds = event.target.getBoundingClientRect();
             // const vaccine = new Vaccine(event.clientX - bounds.left - 15, event.clientY - bounds.top - 15, 5, 'red', null);
             const angle = Math.atan2(event.clientY - bounds.top - 15 - 300, event.clientX - bounds.left - 15 - 400);
             const velocity = { x: Math.cos(angle) * 5, y: Math.sin(angle) * 5 };
             vaccines.push(new Vaccine(400, 300, 5, 'red', velocity));
         });
+    }
+
+    score() {
+        this.ctx.font = "30px Bangers";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText("Score: " + score, 15, 35);
     }
 }
 
