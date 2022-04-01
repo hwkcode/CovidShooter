@@ -1,4 +1,4 @@
-export default class Vaccine {
+export default class Virus {
     constructor(x, y, radius, color, velocity) {
         this.x = x;
         this.y = y;
@@ -8,15 +8,10 @@ export default class Vaccine {
     }
 
     draw(ctx) {
-        ctx.save();
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        ctx.strokeStyle = "black";
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "yellow";
         ctx.fillStyle = this.color;
         ctx.fill();
-        ctx.restore();
     }
 
     update(ctx) {
@@ -26,4 +21,3 @@ export default class Vaccine {
         this.y = this.y + this.velocity.y;
     }
 }
-

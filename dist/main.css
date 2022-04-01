@@ -9,7 +9,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Bangers'; */
 }
 
 #canvas {
@@ -18,8 +17,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    cursor: crosshair;
 }
+
 
 
 
