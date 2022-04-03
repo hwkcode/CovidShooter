@@ -3,6 +3,9 @@ import Vaccine from './vaccine';
 import Virus from './virus';
 import Explosion from './explosion';
 import { drawBackground } from './background';
+import music from '../audio/backgroundmusic.mp3';
+import zap from '../audio/zap.wav';
+// import { backgroundMusic } from '../index.js';
 // import { gameModal } from './modal';
 // const canvas = document.getElementById('game-canvas');
 
@@ -21,6 +24,15 @@ let score = 0;
 
 // const startGame = document.getElementById('start-game');
 // const gameOver = document.getElementById('game-over');
+const backgroundMusic = document.createElement('audio');
+backgroundMusic.src = music;
+backgroundMusic.volume = 0.25;
+
+const shootSound = document.createElement('audio');
+shootSound.src = zap;
+shootSound.volume = 0.5;
+// shootSound.preload = 'auto';
+// shootSound.load();
 
 // let bottle = new Image();
 // bottle.src = vaccineBottle;
@@ -38,6 +50,7 @@ export default class Game {
         this.shoot();
         this.animate();
         this.spawnViruses();
+        backgroundMusic.play();
     }
 
     // start() {
@@ -118,6 +131,8 @@ export default class Game {
 
             if ((distX <= player.width/2) && distY <= player.height/2) {
                 cancelAnimationFrame(animationId);
+                backgroundMusic.pause();
+                shootSound.pause();
                 // startGame.style.display = 'none';
                 // gameOver.style.display = 'flex';
                 // canvas.style.display = 'none';
@@ -179,6 +194,8 @@ export default class Game {
 
     shoot() {
         (this.canvas).addEventListener('click', (event) => {
+            shootSound.currentTime = 0;
+            shootSound.play();
             // console.log(vaccines);
             const bounds = event.target.getBoundingClientRect();
             // console.log(bounds);

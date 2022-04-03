@@ -26,6 +26,10 @@ const config = {
                 ],
             },
             {
+                test: /\.(ogg|mp3|wav|mpe?g)$/i,
+                use: 'file-loader'
+            },
+            {
                 test: /\.s?[ac]ss$/, // applies to css/scss/sass files
                 use: [
                     MiniCssExtractPlugin.loader, // create bundled css file
