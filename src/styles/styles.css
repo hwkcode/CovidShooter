@@ -101,7 +101,7 @@
 }
 
 #start-game-instructions {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     font-size: 30px;
     text-align: center;
 }
@@ -113,7 +113,8 @@
 
 .game-button {
     background-color: rgb(120, 120, 255);
-    color: rgba(255, 255, 255, 0.7);
+    /* -webkit-text-stroke: 0.2px black; */
+    color: rgba(255, 255, 255, 0.9);
     font-family: Bangers;
     font-size: 1.5rem;
     border-radius: 0.5rem;
