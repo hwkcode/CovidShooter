@@ -38,7 +38,7 @@ export default class Virus {
     update(ctx) {
         // debugger
         this.draw(ctx);
-        this.x = this.x + this.velocity.x;
-        this.y = this.y + this.velocity.y;
+        this.x = this.x + this.velocity.x * 3;
+        this.y = this.y + this.velocity.y * 3;
     }
 }

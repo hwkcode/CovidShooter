@@ -6,6 +6,7 @@ import { drawBackground } from './background';
 import music from '../audio/backgroundmusic.mp3';
 import zap from '../audio/zap.wav';
 import explode from '../audio/explode.wav';
+import retrogameover from '../audio/gameover.mp3';
 // import { backgroundMusic } from '../index.js';
 // import { gameModal } from './modal';
 // const canvas = document.getElementById('game-canvas');
@@ -36,6 +37,10 @@ shootSound.volume = 0.4;
 const explodeSound = document.createElement('audio');
 explodeSound.src = explode;
 explodeSound.volume = 0.4;
+
+const gameoverSound = document.createElement('audio');
+gameoverSound.src = retrogameover;
+gameoverSound.volume = 0.4;
 // shootSound.preload = 'auto';
 // shootSound.load();
 
@@ -136,6 +141,7 @@ export default class Game {
 
             if ((distX <= player.width/2) && distY <= player.height/2) {
                 cancelAnimationFrame(animationId);
+                gameoverSound.play();
                 backgroundMusic.pause();
                 shootSound.pause();
                 // startGame.style.display = 'none';
