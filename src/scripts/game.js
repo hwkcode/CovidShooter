@@ -5,6 +5,7 @@ import Explosion from './explosion';
 import { drawBackground } from './background';
 import music from '../audio/backgroundmusic.mp3';
 import zap from '../audio/zap.wav';
+import explode from '../audio/explode.wav';
 // import { backgroundMusic } from '../index.js';
 // import { gameModal } from './modal';
 // const canvas = document.getElementById('game-canvas');
@@ -26,11 +27,15 @@ let score = 0;
 // const gameOver = document.getElementById('game-over');
 const backgroundMusic = document.createElement('audio');
 backgroundMusic.src = music;
-backgroundMusic.volume = 0.25;
+backgroundMusic.volume = 0.3;
 
 const shootSound = document.createElement('audio');
 shootSound.src = zap;
-shootSound.volume = 0.5;
+shootSound.volume = 0.4;
+
+const explodeSound = document.createElement('audio');
+explodeSound.src = explode;
+explodeSound.volume = 0.4;
 // shootSound.preload = 'auto';
 // shootSound.load();
 
@@ -143,11 +148,15 @@ export default class Game {
                 // console.log(dist);
                 if (dist - virus.width / 2 - vaccine.radius < 1) {
                     score += 10;
+                    explodeSound.currentTime = 0;
+                    explodeSound.play();
                     for (let i = 0; i < virus.width * 2; i++) {
                         explosions.push(new Explosion(vaccine.x, vaccine.y, Math.random() * 2, "red",
                             { x: (Math.random() - 0.5) * (Math.random() * 8), y: (Math.random() - 0.5) * (Math.random() * 8) }));
                     }
                     if (virus.width - 40 > 40) {
+                        explodeSound.currentTime = 0;
+                        explodeSound.play();
                         virus.width -= 40;
                         virus.height -= 40;
                         setTimeout(() => {
