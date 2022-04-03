@@ -8,11 +8,15 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
-#canvas {
+#game-canvas {
+    display: none;
     border: 15px solid black;
+    box-sizing: border-box;
+    width: 800px;
+    height: 600px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,7 +24,116 @@
     cursor: crosshair;
 }
 
+#start-game {
+    display: flex;
+    flex-direction: column;
+    border: 15px solid black;
+    box-sizing: border-box;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* cursor: crosshair; */
+    font-family: Bangers;
+    background-color: black;
+    color: yellow;
+    box-shadow:inset 0px 0px 0px 2px white;
+}
 
+#game-over {
+    display: none;
+    flex-direction: column;
+    border: 15px solid black;
+    box-sizing: border-box;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* cursor: crosshair; */
+    font-family: Bangers;
+    background-color: black;
+    color: yellow;
+    box-shadow:inset 0px 0px 0px 2px white;
+}
+
+#game-over-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+#game-score {
+    font-size: 100px;
+    /* -webkit-text-stroke: 1px black;
+    animation: glow 1s ease-in-out infinite alternate; */
+}
+
+#game-points {
+    /* margin-top: 1.5rem; */
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#start-game-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+#start-game-title {
+    font-size: 100px;
+    -webkit-text-stroke: 1px black;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073, 0 0 25px #e60073, 0 0 30px #e60073, 0 0 35px #e60073;
+  }
+  
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 15px #ff4da6, 0 0 20px #ff4da6, 0 0 25px #ff4da6, 0 0 30px #ff4da6, 0 0 35px #ff4da6, 0 0 40px #ff4da6;
+  }
+}
+
+#start-game-instructions {
+    margin-top: 1.5rem;
+    font-size: 30px;
+    text-align: center;
+}
+
+#virus {
+    width: 150px;
+    height: 150px;
+}
+
+.game-button {
+    /* background-color: rgb(39, 39, 157); */
+    background-color: rgb(120, 120, 255);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: Bangers;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    border: 0.02rem solid black;
+    padding: 10px 100px;
+    transition: all 0.1s ease-in-out;
+}
+
+.game-button:hover {
+    background-color: rgb(65, 65, 213);
+    /* background-color: rgb(70, 70, 255); */
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba(101, 101, 250, 0.4);
+}
 
 
 

@@ -9,11 +9,32 @@
     <title>Covid Shooter</title>
 </head>
 <body>
-    <div class="modal-container">
-        <div class="score">0</div>
-        <div class="points">Points</div>
-        <button>Start Game</button>
+    <div id="start-game">
+        <div id="start-game-content">
+            <div id="start-game-title">Covid Shooter</div>
+            <div id="start-game-instructions">
+                <div>Click at the incoming coronaviruses</div>
+                <div>with vaccine shots!</div>
+            </div>
+            <img src="./src/images/coronavirus.png" id="virus" alt="red coronavirus">
+            <button class="game-button" id="start-game-button">Start Game</button>
+        </div>
     </div>
-    <canvas id='canvas'></canvas>
+    
+    <div id="game-over">
+        <div id="game-over-content">
+            <div id="game-score">0</div>
+            <div id="game-points">Points</div>
+            <button class="game-button" id="restart-game-button">Restart Game</button>
+        </div>
+    </div>
+
+    <!-- <div class="canvas" id="pause-container">
+        <div class="pause-content">
+            <h3>Paused</h3>
+        </div>
+    </div> -->
+
+    <canvas id='game-canvas'></canvas>
 </body>
 </html>

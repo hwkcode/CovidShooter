@@ -3,7 +3,8 @@ import Vaccine from './vaccine';
 import Virus from './virus';
 import Explosion from './explosion';
 import { drawBackground } from './background';
-import { gameModal } from './modal';
+// import { gameModal } from './modal';
+// const canvas = document.getElementById('game-canvas');
 
 // const player = new Player(400, 300, 30, 'blue');
 const player = new Player();
@@ -14,31 +15,47 @@ const vaccines = [];
 const viruses = [];
 const explosions = [];
 let score = 0;
-let started = false;
-let paused = false;
-let gameOver = false;
+// let started = false;
+// let paused = false;
+// let ended = false;
+
+// const startGame = document.getElementById('start-game');
+// const gameOver = document.getElementById('game-over');
 
 // let bottle = new Image();
 // bottle.src = vaccineBottle;
 
 export default class Game {
-    constructor(canvas) {
-        this.ctx = canvas.getContext('2d');
+    constructor(ctx, canvas) {
+        this.ctx = ctx;
+        this.canvas = canvas;
         this.init();
+        // this.start();
     }
 
     init() {
-        gameModal(this.ctx, started, paused, gameOver);
+        // gameModal(this.ctx, started, paused, ended);
         this.shoot();
         this.animate();
         this.spawnViruses();
     }
 
+    // start() {
+    //     gameModal(this.ctx, started, paused, ended);
+    //     startGameButton.addEventListener("click", () => {
+    //         started = true;
+    //         console.log(started);
+    //         this.shoot();
+    //         this.animate();
+    //         this.spawnViruses();
+    //     });
+    // }
+
     animate() {
-        drawBackground(this.ctx);
-        player.draw(this.ctx);
         let animationId;
         animationId = requestAnimationFrame(() => this.animate());
+        drawBackground(this.ctx);
+        player.draw(this.ctx);
         // console.log(player);
         this.score();
         explosions.forEach((explosion, index) => {
@@ -51,9 +68,9 @@ export default class Game {
         vaccines.forEach((vaccine, vaccineIndex) => {
             vaccine.update(this.ctx);
             if (vaccine.x + vaccine.radius < 0 ||
-                vaccine.x - vaccine.radius > canvas.width ||
+                vaccine.x - vaccine.radius > this.canvas.width ||
                 vaccine.y + vaccine.radius < 0 ||
-                vaccine.y - vaccine.radius > canvas.height
+                vaccine.y - vaccine.radius > this.canvas.height
             ) {
                 setTimeout(() => {
                     vaccines.splice(vaccineIndex, 1);
@@ -68,8 +85,8 @@ export default class Game {
             // const dist = Math.hypot(player.x - virus.x, player.y - virus.y);
             // console.log(virus.radius);
             // console.log(player.width);
-            // console.log(player.x); // 330 = 400 (half of width of canvas) - 70 (half of width)
-            // console.log(player.y); // 210 = 300 (half of height of canvas) - 90 (half of height)
+            // console.log(player.x); // 330 = 400 (half of width of this.canvas) - 70 (half of width)
+            // console.log(player.y); // 210 = 300 (half of height of this.canvas) - 90 (half of height)
             // console.log(dist);
             // console.log(virus.x);
             // console.log(player.x);
@@ -101,6 +118,9 @@ export default class Game {
 
             if ((distX <= player.width/2) && distY <= player.height/2) {
                 cancelAnimationFrame(animationId);
+                // startGame.style.display = 'none';
+                // gameOver.style.display = 'flex';
+                // canvas.style.display = 'none';
             }
 
             vaccines.forEach((vaccine, vaccineIndex) => {
@@ -136,11 +156,11 @@ export default class Game {
             let x;
             let y;
             if (Math.random() < 0.5) {
-                x = Math.random() < 0.5 ? 0 - width : canvas.width + width;
-                y = Math.random() * canvas.height;
+                x = Math.random() < 0.5 ? 0 - width : this.canvas.width + width;
+                y = Math.random() * this.canvas.height;
             } else {
-                x = Math.random() * canvas.width;
-                y = Math.random() < 0.5 ? 0 - width : canvas.height + width;
+                x = Math.random() * this.canvas.width;
+                y = Math.random() < 0.5 ? 0 - width : this.canvas.height + width;
             }
 
             // const color = 'green';
@@ -148,21 +168,24 @@ export default class Game {
             // const vaccine = new Vaccine(event.clientX - bounds.left - 15, event.clientY - bounds.top - 15, 5, 'red', null);
             // const angle = Math.atan2(bounds.top - 15 - 300 - y, bounds.left - 15 - 400 - x);
             const angle = Math.atan2(300 - y, 400 - x);
+            // console.log(angle);
             const velocity = { x: Math.cos(angle), y: Math.sin(angle) };
+            // console.log(Math.cos(angle));
+            // console.log(Math.sin(angle));
             viruses.push(new Virus(x, y, velocity, width, height));
             // console.log(viruses);
         }, 1000);
     }
 
     shoot() {
-        canvas.addEventListener('click', (event) => {
+        (this.canvas).addEventListener('click', (event) => {
             // console.log(vaccines);
             const bounds = event.target.getBoundingClientRect();
             // console.log(bounds);
             // const vaccine = new Vaccine(event.clientX - bounds.left - 15, event.clientY - bounds.top - 15, 5, 'red', null);
-            const angle = Math.atan2(event.clientY - bounds.top - 15 - 235, event.clientX - bounds.left - 15 - 400);
+            const angle = Math.atan2(event.clientY - bounds.top - 237.1, event.clientX - bounds.left - 400);
             const velocity = { x: Math.cos(angle) * 5, y: Math.sin(angle) * 5 };
-            vaccines.push(new Vaccine(400, 235, 3, 'white', velocity));
+            vaccines.push(new Vaccine(400, 237.1, 3, 'white', velocity));
         });
     }
 
