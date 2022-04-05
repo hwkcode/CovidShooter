@@ -8,7 +8,7 @@
 
 <p align="center">
     <h2 align="center">An interactive 2D shooting game using Javascript and HTML5 Canvas </br></br>
-    Start playing <a href="https://hwkcode.github.io/covidshooter"><strong>here!</strong></a>
+    Start playing <a href="https://hwkcode.github.io/CovidShooter/"><strong>here!</strong></a>
     </h2>   
     
 </p>
