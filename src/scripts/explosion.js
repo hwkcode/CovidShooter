@@ -19,7 +19,6 @@ export default class Explosion {
     }
 
     update(ctx) {
-        // debugger
         this.draw(ctx);
         this.velocity.x *= 0.98;
         this.velocity.y *= 0.98;

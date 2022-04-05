@@ -2,14 +2,12 @@ import corona from '../images/coronavirus.png';
 
 export default class Virus {
     constructor(x, y, velocity, width, height, difficulty) {
-        // this.color = color;
         this.velocity = velocity;
         this.difficulty = difficulty;
         const coronaVirus = new Image();
         coronaVirus.src = corona;
         coronaVirus.onload = () => {
             this.coronaVirus = coronaVirus;
-            // this.radius = radius;
             this.x = x;
             this.y = y;
             this.width = width;
@@ -18,8 +16,6 @@ export default class Virus {
     }
 
     draw(ctx) {
-        // const bottle = new Image();
-        // bottle.src = bottleImage;
         let xAdjust = this.width * .5;
         let yAdjust = this.height * .5;
         if (this.coronaVirus) {
@@ -28,16 +24,7 @@ export default class Virus {
         }
     }
 
-
-    // draw(ctx) {
-    //     ctx.beginPath();
-    //     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    //     ctx.fillStyle = this.color;
-    //     ctx.fill();
-    // }
-
     update(ctx) {
-        // debugger
         this.draw(ctx);
         this.x = this.x + this.velocity.x * this.difficulty;
         this.y = this.y + this.velocity.y * this.difficulty;

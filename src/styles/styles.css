@@ -1,10 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Passion+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Beastly&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Hanalei+Fill&display=swap');
 
 * {
     margin: 0;
@@ -36,14 +30,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* cursor: crosshair; */
     font-family: 'Bangers';
-    /* font-family: 'Bungee'; */
-    /* font-family: 'Black Ops One'; */
-    /* font-family: 'Passion One'; */
-    /* font-family: 'Rubik Beastly'; */
-    /* font-family: 'Nosifer'; */
-    /* font-family: 'Hanalei Fill'; */
     background-color: black;
     color: yellow;
     box-shadow:inset 0px 0px 0px 2px white;
@@ -60,11 +47,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* cursor: crosshair; */
     font-family: Bangers;
     background-color: white;
     color: black;
-    /* box-shadow:inset 0px 0px 0px 2px white; */
     z-index: 1;
     border-radius: 5px;
 }
@@ -74,20 +59,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10rem; */
 }
 
 #game-score {
     font-size: 90px;
     margin-top: 1.5rem;
-    /* -webkit-text-stroke: 1px black;
-    animation: glow 1s ease-in-out infinite alternate; */
 }
 
 #game-points {
-    /* margin-top: 1.5rem; */
     font-size: 30px;
-    /* text-align: center; */
     margin-bottom: 1rem;
 }
 
@@ -150,7 +130,6 @@
 
 .game-button {
     background-color: rgb(120, 120, 255);
-    /* -webkit-text-stroke: 0.2px black; */
     color: rgba(255, 255, 255, 0.9);
     font-family: Bangers;
     font-size: 1.5rem;

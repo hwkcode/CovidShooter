@@ -13,7 +13,6 @@ let player = new Player();
 let vaccines = {};
 let viruses = {};
 let explosions = {};
-let markedForDeletion = [];
 let score = 0;
 let animationId;
 let difficulty = 1;
@@ -33,7 +32,6 @@ explodeSound.volume = 0.05;
 const gameoverSound = document.createElement('audio');
 gameoverSound.src = retrogameover;
 gameoverSound.volume = 0.2;
-
 
 export default class Game {
     constructor(ctx, canvas) {
@@ -68,19 +66,14 @@ export default class Game {
         explosions = [];
         difficulty = 1;
         score = 0;
-        // animationId;
-        // console.log(viruses);
-        // this.shoot();
         this.animate();
         this.spawnViruses();
         backgroundMusic.play();
-        // this.deleteCollisions();
 
         const gameOver = document.getElementById('game-over');
         if (gameOver.style.display != 'none') {
             gameOver.style.display = 'none';
         }
-
     }
 
     animate() {
@@ -114,21 +107,12 @@ export default class Game {
 
         for (let [viruskey, virus] of Object.entries(viruses)) {
             virus.update(this.ctx);
-            // console.log(virus, virusIndex);
             let distX = Math.abs(virus.x - player.x - player.width / 2);
             let distY = Math.abs(virus.y - player.y - player.height / 2);
 
             if ((distX <= player.width / 2) && distY <= player.height / 2) {
                 this.endgame();
             }
-
-            // detect vs handle collisions
-            // UUID (https://www.npmjs.com/package/uuid) - npm install, call function to return string
-            // nested for loop for virus and vaccine
-            // once collided, array called "marked for deletion"
-            // put virus and vaccine ids into those arrays
-            // after iterate through loop, loop through deletion arrays (separating concerns)
-
 
             for (let [vaccinekey, vaccine] of Object.entries(vaccines)) {          
                 const dist = Math.hypot(vaccine.x - virus.x, vaccine.y - virus.y);
@@ -152,14 +136,8 @@ export default class Game {
                     }
                 }
             };
-
-            // this.deleteCollisions();
         } 
     }
-
-    // deleteCollisions() {
-    //     markedForDeletion.length = 0
-    // }
 
     spawnViruses() {
         const spawn = setInterval(() => {
@@ -183,20 +161,8 @@ export default class Game {
 
             const velocity = { x: Math.cos(angle), y: Math.sin(angle) };
             viruses[uuidv4()] = new Virus(x, y, velocity, width, height, difficulty += 0.10);
-            // console.log(difficulty);
-            // console.log(viruses);
-            // console.log(score);
-            // console.log(vaccines);
-            // console.log(uuidv4()); 
         }, 1000);
     }
-
-    // shoot() {
-    //     if (this.gameHasEnded) {
-    //         return;
-    //     }
-    //     (this.canvas).addEventListener('click', this.clickCallback.bind(this));
-    // }
 
     score() {
         this.ctx.font = "50px Bangers";
@@ -209,7 +175,6 @@ export default class Game {
         cancelAnimationFrame(animationId);
         this.canvas.removeEventListener('click', this.alias);
         this.gameHasEnded = true;
-        // console.log(this.gameHasEnded);
         gameoverSound.play();
         backgroundMusic.pause();
         shootSound.pause();
@@ -217,17 +182,6 @@ export default class Game {
         gameScore.innerHTML = score;
         const gameOver = document.getElementById('game-over');
         gameOver.style.display = 'flex';
-        // vaccines = [];
-        // viruses = [];
-        // explosions = [];
-
-        // this.restartButton();
     }
 
-    // restartButton() {
-    //     const restartGameButton = document.getElementById('restart-game-button');
-    //     restartGameButton.addEventListener("click", () => {
-    //         new Game(this.ctx, this.canvas);
-    //     });
-    // }
 }

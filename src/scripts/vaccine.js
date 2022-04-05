@@ -20,7 +20,6 @@ export default class Vaccine {
     }
 
     update(ctx) {
-        // debugger
         this.draw(ctx);
         this.x = this.x + this.velocity.x;
         this.y = this.y + this.velocity.y;
