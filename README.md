@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="../src/images/gameplay.gif">
+    <img src="./src/images/gameplay.gif" height=400>
 </p>
 
 <p align="center">
@@ -7,7 +7,10 @@
 </p>
 
 <p align="center">
-    <h2 align="center">An interactive 2D shooting game neutralizing the coronaviruses with vaccine shots</h2>    
+    <h2 align="center">An interactive 2D shooting game neutralizing coronaviruses with vaccine shots </br></br>
+    Start playing <a href="https://hwkcode.github.io/covidshooter"><strong>here!</strong></a>
+    </h2>   
+    
 </p>
 
 <p align="center">
