@@ -43,19 +43,17 @@ export default class Game {
     }
 
     addEventListeners() {
-        this.alias = this.handleEventClick.bind(this);
+        this.alias = this.handleShoot.bind(this);
         this.canvas.addEventListener('click', this.alias);
     }
-
-    handleEventClick = (event) => {
+    
+    handleShoot = (event) => {
         shootSound.currentTime = 0;
         shootSound.play();
         const bounds = event.target.getBoundingClientRect();
         const angle = Math.atan2(event.clientY - bounds.top - 237.1, event.clientX - bounds.left - 400);
         const velocity = { x: Math.cos(angle) * 5, y: Math.sin(angle) * 5 };
         vaccines[uuidv4()] = new Vaccine(400, 237.1, 3, 'white', velocity);
-        console.log("bullets");
-        console.log(vaccines);
     };
 
     init() {
