@@ -43,7 +43,7 @@ export default class Game {
 
     init() {
         this.gameHasEnded = false;
-        // player = new Player();
+        player = new Player();
         vaccines = [];
         viruses = [];
         explosions = [];
@@ -152,7 +152,8 @@ export default class Game {
             const velocity = { x: Math.cos(angle), y: Math.sin(angle) };
             viruses.push(new Virus(x, y, velocity, width, height, difficulty += 0.10));
             console.log(difficulty);
-            // console.log(viruses);
+            console.log(viruses);
+            console.log(score);
             // console.log(vaccines);
         }, 1000);
     }
@@ -191,8 +192,15 @@ export default class Game {
         // vaccines = [];
         // viruses = [];
         // explosions = [];
+
+        // this.restartButton();
     }
 
-
+    // restartButton() {
+    //     const restartGameButton = document.getElementById('restart-game-button');
+    //     restartGameButton.addEventListener("click", () => {
+    //         new Game(this.ctx, this.canvas);
+    //     });
+    // }
 }
 
