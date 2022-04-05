@@ -5,6 +5,30 @@
 /*!*********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (1) ***!
   \*********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Bungee&display=swap);
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (2) ***!
+  \*********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap);
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (3) ***!
+  \*********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Passion+One&display=swap);
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (4) ***!
+  \*********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Rubik+Beastly&display=swap);
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (5) ***!
+  \*********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Nosifer&display=swap);
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (6) ***!
+  \*********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Hanalei+Fill&display=swap);
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./src/styles/styles.css (7) ***!
+  \*********************************************************************************************************/
 * {
     margin: 0;
     padding: 0;
@@ -36,7 +60,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     /* cursor: crosshair; */
-    font-family: Bangers;
+    font-family: 'Bangers';
+    /* font-family: 'Bungee'; */
+    /* font-family: 'Black Ops One'; */
+    /* font-family: 'Passion One'; */
+    /* font-family: 'Rubik Beastly'; */
+    /* font-family: 'Nosifer'; */
+    /* font-family: 'Hanalei Fill'; */
     background-color: black;
     color: yellow;
     box-shadow:inset 0px 0px 0px 2px white;
@@ -45,19 +75,21 @@
 #game-over {
     display: none;
     flex-direction: column;
-    border: 15px solid black;
-    box-sizing: border-box;
-    width: 800px;
-    height: 600px;
+    /* border: 15px solid black; */
+    /* box-sizing: border-box; */
+    width: 425px;
+    height: 300px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     /* cursor: crosshair; */
     font-family: Bangers;
-    background-color: black;
-    color: yellow;
-    box-shadow:inset 0px 0px 0px 2px white;
+    background-color: white;
+    color: black;
+    /* box-shadow:inset 0px 0px 0px 2px white; */
+    z-index: 1;
+    border-radius: 5px;
 }
 
 #game-over-content {
@@ -65,11 +97,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 10rem;
+    /* margin-top: 10rem; */
 }
 
 #game-score {
-    font-size: 100px;
+    font-size: 90px;
+    margin-top: 1.5rem;
     /* -webkit-text-stroke: 1px black;
     animation: glow 1s ease-in-out infinite alternate; */
 }
@@ -77,8 +110,20 @@
 #game-points {
     /* margin-top: 1.5rem; */
     font-size: 30px;
-    text-align: center;
-    margin-bottom: 1.5rem;
+    /* text-align: center; */
+    margin-bottom: 1rem;
+}
+
+#social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    margin-top: 1.5rem;
+}
+
+#link {
+    margin: 5px 20px;
 }
 
 #start-game-content {

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2090cc241e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
     <title>Covid Shooter</title>
 </head>
+
 <body>
     <div id="start-game">
         <div id="start-game-content">
@@ -27,12 +30,23 @@
             <button class="game-button" id="start-game-button">Start Game</button>
         </div>
     </div>
-    
+
     <div id="game-over">
         <div id="game-over-content">
             <div id="game-score">0</div>
             <div id="game-points">Points</div>
-            <button class="game-button" id="restart-game-button">Restart Game</button>
+            <button class="game-button" id="restart-game-button">Return to home</button>
+            <div id="social-links">
+                <a href="https://www.linkedin.com/in/jonathankimmbapmp/" target="_blank" id="link">
+                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                </a>
+                <a href="https://github.com/hwkcode" target="_blank" id="link">
+                    <i class="fa-brands fa-github fa-2x"></i>
+                </a>
+                <a href="https://angel.co/u/jonathan-kim-mba-pmp" target="_blank" id="link">
+                    <i class="fa-brands fa-angellist fa-2x"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -44,4 +58,5 @@
 
     <canvas id='game-canvas'></canvas>
 </body>
+
 </html>

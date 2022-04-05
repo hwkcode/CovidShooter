@@ -1,9 +1,10 @@
 import corona from '../images/coronavirus.png';
 
 export default class Virus {
-    constructor(x, y, velocity, width, height) {
+    constructor(x, y, velocity, width, height, difficulty) {
         // this.color = color;
         this.velocity = velocity;
+        this.difficulty = difficulty;
         const coronaVirus = new Image();
         coronaVirus.src = corona;
         coronaVirus.onload = () => {
@@ -38,7 +39,7 @@ export default class Virus {
     update(ctx) {
         // debugger
         this.draw(ctx);
-        this.x = this.x + this.velocity.x * 3;
-        this.y = this.y + this.velocity.y * 3;
+        this.x = this.x + this.velocity.x * this.difficulty;
+        this.y = this.y + this.velocity.y * this.difficulty;
     }
 }

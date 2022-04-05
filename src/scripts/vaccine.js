@@ -12,7 +12,7 @@ export default class Vaccine {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         ctx.strokeStyle = "black";
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 5;
         ctx.shadowColor = "yellow";
         ctx.fillStyle = this.color;
         ctx.fill();
