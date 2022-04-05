@@ -7,13 +7,11 @@ import music from '../audio/backgroundmusic.mp3';
 import zap from '../audio/zap.wav';
 import explode from '../audio/explode.wav';
 import retrogameover from '../audio/gameover.mp3';
-import { v4 as uuidv4 } from 'uuid';
 
 let player = new Player();
-let vaccines = {};
-let viruses = {};
-let explosions = {};
-let markedForDeletion = [];
+let vaccines = [];
+let viruses = [];
+let explosions = [];
 let score = 0;
 let animationId;
 let difficulty = 1;
@@ -55,9 +53,8 @@ export default class Game {
         const bounds = event.target.getBoundingClientRect();
         const angle = Math.atan2(event.clientY - bounds.top - 237.1, event.clientX - bounds.left - 400);
         const velocity = { x: Math.cos(angle) * 5, y: Math.sin(angle) * 5 };
-        vaccines[uuidv4()] = new Vaccine(400, 237.1, 3, 'white', velocity);
+        vaccines.push(new Vaccine(400, 237.1, 3, 'white', velocity));
         console.log("bullets");
-        console.log(vaccines);
     };
 
     init() {
@@ -74,7 +71,6 @@ export default class Game {
         this.animate();
         this.spawnViruses();
         backgroundMusic.play();
-        // this.deleteCollisions();
 
         const gameOver = document.getElementById('game-over');
         if (gameOver.style.display != 'none') {
@@ -91,15 +87,14 @@ export default class Game {
         drawBackground(this.ctx);
         player.draw(this.ctx);
         this.score();
-        for (let [explosionkey, explosion] of Object.entries(explosions)) {
+        explosions.forEach((explosion, index) => {
             if (explosion.alpha <= 0) {
-                delete explosions[explosionkey];
+                explosions.splice(index, 1);
             } else {
                 explosion.update(this.ctx);
             }
-        };
-
-        for (let [key, vaccine] of Object.entries(vaccines)) {
+        });
+        vaccines.forEach((vaccine, vaccineIndex) => {
             vaccine.update(this.ctx);
             if (vaccine.x + vaccine.radius < 0 ||
                 vaccine.x - vaccine.radius > this.canvas.width ||
@@ -107,12 +102,11 @@ export default class Game {
                 vaccine.y - vaccine.radius > this.canvas.height
             ) {
                 setTimeout(() => {
-                    delete vaccines[key];
+                    vaccines.splice(vaccineIndex, 1);
                 }, 0);
             }
-        };
-
-        for (let [viruskey, virus] of Object.entries(viruses)) {
+        });
+        viruses.forEach((virus, virusIndex) => {
             virus.update(this.ctx);
             // console.log(virus, virusIndex);
             let distX = Math.abs(virus.x - player.x - player.width / 2);
@@ -130,36 +124,34 @@ export default class Game {
             // after iterate through loop, loop through deletion arrays (separating concerns)
 
 
-            for (let [vaccinekey, vaccine] of Object.entries(vaccines)) {          
+            vaccines.forEach((vaccine, vaccineIndex) => {           // marked for deletion
                 const dist = Math.hypot(vaccine.x - virus.x, vaccine.y - virus.y);
                 if (dist - virus.width / 2 - vaccine.radius < 1) {
                     score += 10;
                     explodeSound.currentTime = 0;
                     explodeSound.play();
                     for (let i = 0; i < virus.width * 2; i++) {
-                        explosions[uuidv4()] = new Explosion(vaccine.x, vaccine.y, Math.random() * 2, "red",
-                            { x: (Math.random() - 0.5) * (Math.random() * 8), y: (Math.random() - 0.5) * (Math.random() * 8) });
+                        explosions.push(new Explosion(vaccine.x, vaccine.y, Math.random() * 2, "red",
+                            { x: (Math.random() - 0.5) * (Math.random() * 8), y: (Math.random() - 0.5) * (Math.random() * 8) }));
                     }
                     if (virus.width - 40 > 40) {
                         explodeSound.currentTime = 0;
                         explodeSound.play();
                         virus.width -= 40;
                         virus.height -= 40;
-                        delete vaccines[vaccinekey];
+                        setTimeout(() => {
+                            vaccines.splice(vaccineIndex, 1);
+                        }, 0);
                     } else {
-                        delete viruses[viruskey];
-                        delete vaccines[vaccinekey];
+                        setTimeout(() => {
+                            viruses.splice(virusIndex, 1);
+                            vaccines.splice(vaccineIndex, 1);
+                        }, 0);
                     }
                 }
-            };
-
-            // this.deleteCollisions();
-        } 
+            });
+        });
     }
-
-    // deleteCollisions() {
-    //     markedForDeletion.length = 0
-    // }
 
     spawnViruses() {
         const spawn = setInterval(() => {
@@ -182,12 +174,11 @@ export default class Game {
             const angle = Math.atan2(300 - y, 400 - x);
 
             const velocity = { x: Math.cos(angle), y: Math.sin(angle) };
-            viruses[uuidv4()] = new Virus(x, y, velocity, width, height, difficulty += 0.10);
+            viruses.push(new Virus(x, y, velocity, width, height, difficulty += 0.10));
             // console.log(difficulty);
             // console.log(viruses);
             // console.log(score);
             // console.log(vaccines);
-            // console.log(uuidv4()); 
         }, 1000);
     }
 
@@ -203,7 +194,6 @@ export default class Game {
         this.ctx.fillStyle = "white";
         this.ctx.fillText("Score: " + score, 15, 50);
     }
-
 
     endgame() {
         cancelAnimationFrame(animationId);
@@ -231,3 +221,4 @@ export default class Game {
     //     });
     // }
 }
+

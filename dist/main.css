@@ -131,7 +131,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 
 #start-game-title {
@@ -162,8 +162,8 @@
 }
 
 #virus {
-    width: 125px;
-    height: 125px;
+    width: 85px;
+    height: 85px;
 }
 
 #vial {
