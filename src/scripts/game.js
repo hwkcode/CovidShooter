@@ -159,7 +159,7 @@ export default class Game {
 
             const velocity = { x: Math.cos(angle), y: Math.sin(angle) };
             viruses[uuidv4()] = new Virus(x, y, velocity, width, height, difficulty += 0.10);
-        }, 1000);
+        }, 1500);
     }
 
     score() {
