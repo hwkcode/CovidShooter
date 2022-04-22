@@ -37,7 +37,7 @@
     </ul>
 </p>
 
-## Featured Code Snippets
+## Featured Code Snippet
 
 Shooting vaccine shots from vial:
 
