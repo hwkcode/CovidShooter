@@ -40,6 +40,7 @@ export default class Game {
         this.gameHasEnded = false;
         this.init();
         this.addEventListeners();
+        this.endgame = this.endgame.bind(this);
     }
 
     addEventListeners() {
