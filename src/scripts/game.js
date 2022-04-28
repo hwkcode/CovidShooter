@@ -60,9 +60,9 @@ export default class Game {
     init() {
         this.gameHasEnded = false;
         player = new Player();
-        vaccines = [];
-        viruses = [];
-        explosions = [];
+        vaccines = {};
+        viruses = {};
+        explosions = {};
         difficulty = 1;
         score = 0;
         this.animate();
@@ -174,9 +174,9 @@ export default class Game {
         cancelAnimationFrame(animationId);
         this.canvas.removeEventListener('click', this.alias);
         this.gameHasEnded = true;
-        vaccines = [];
-        viruses = [];
-        explosions = [];
+        vaccines = {};
+        viruses = {};
+        explosions = {};
         gameoverSound.play();
         backgroundMusic.pause();
         shootSound.pause();
