@@ -77,6 +77,7 @@ export default class Game {
 
     animate() {
         if (this.gameHasEnded) {
+            viruses = {};
             return;
         }
         animationId = requestAnimationFrame(() => this.animate());
@@ -142,6 +143,7 @@ export default class Game {
         const spawn = setInterval(() => {
             if (this.gameHasEnded) {
                 clearInterval(spawn);
+                viruses = {};
                 return;
             }
             const width = Math.random() * (100 - 50) + 50;
