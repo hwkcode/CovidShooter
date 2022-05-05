@@ -47,7 +47,7 @@ export default class Game {
         this.alias = this.handleShoot.bind(this);
         this.canvas.addEventListener('click', this.alias);
     }
-    
+
     handleShoot = (event) => {
         shootSound.currentTime = 0;
         shootSound.play();
@@ -76,11 +76,12 @@ export default class Game {
     }
 
     animate() {
+        animationId = requestAnimationFrame(() => this.animate());
         if (this.gameHasEnded) {
+            cancelAnimationFrame(animationId);
             viruses = {};
             return;
         }
-        animationId = requestAnimationFrame(() => this.animate());
         drawBackground(this.ctx);
         player.draw(this.ctx);
         this.score();
@@ -114,7 +115,7 @@ export default class Game {
                 this.endgame();
             }
 
-            for (let [vaccinekey, vaccine] of Object.entries(vaccines)) {          
+            for (let [vaccinekey, vaccine] of Object.entries(vaccines)) {
                 const dist = Math.hypot(vaccine.x - virus.x, vaccine.y - virus.y);
                 if (dist - virus.width / 2 - vaccine.radius < 1) {
                     score += 10;
@@ -136,7 +137,7 @@ export default class Game {
                     }
                 }
             };
-        } 
+        }
     }
 
     spawnViruses() {
@@ -173,7 +174,6 @@ export default class Game {
 
 
     endgame() {
-        cancelAnimationFrame(animationId);
         this.canvas.removeEventListener('click', this.alias);
         this.gameHasEnded = true;
         vaccines = {};
