@@ -80,6 +80,7 @@ export default class Game {
         if (this.gameHasEnded) {
             cancelAnimationFrame(animationId);
             viruses = {};
+            vaccines = {};
             return;
         }
         drawBackground(this.ctx);
@@ -181,6 +182,7 @@ export default class Game {
         explosions = {};
         gameoverSound.play();
         backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
         shootSound.pause();
         const gameScore = document.getElementById('game-score');
         gameScore.innerHTML = score;
